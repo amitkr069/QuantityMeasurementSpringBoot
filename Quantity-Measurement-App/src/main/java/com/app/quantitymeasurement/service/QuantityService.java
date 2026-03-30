@@ -108,4 +108,8 @@ public class QuantityService {
         repository.save(history);
     }
 
+    public void setRepository(CalculationHistoryRepository repository) {
+        this.repository = repository;
+    }
+
 }
