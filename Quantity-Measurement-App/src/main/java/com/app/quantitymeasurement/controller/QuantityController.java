@@ -1,0 +1,68 @@
+package com.app.quantitymeasurement.controller;
+
+import java.util.logging.Logger;
+import org.springframework.web.bind.annotation.*;
+import com.app.quantitymeasurement.dto.*;
+import com.app.quantitymeasurement.service.QuantityService;
+
+@RestController
+@RequestMapping("/quantity")
+public class QuantityController {
+	
+	// Logger initialization
+    private static final Logger logger = Logger.getLogger(
+        QuantityController.class.getName()
+    );
+
+    // Getter method
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    private final QuantityService service;
+
+    public QuantityController(QuantityService service) {
+        this.service = service;
+    }
+
+    @PostMapping("/convert")
+    public ResultResponseDto convert(@RequestBody ConversionRequestDto dto) {
+    	getLogger().info("Convert API called - Input: value=" + dto.getValue() + 
+                ", fromUnit=" + dto.getFromUnit() + ", toUnit=" + dto.getToUnit());
+        double result = service.convert(dto);
+        
+        getLogger().info("Convert API response - Output: " + result);
+        
+        return new ResultResponseDto("Converted", result);
+    }
+
+    @PostMapping("/compare")
+    public String compare(@RequestBody ComparisonRequestDto dto) {
+//        return service.compare(dto);
+    	
+    	getLogger().info("Compare API called - Input: value1=" + dto.getValue1() + 
+                ", unit1=" + dto.getUnit1() + ", value2=" + dto.getValue2() + 
+                ", unit2=" + dto.getUnit2());
+
+		String result = service.compare(dto);
+		
+		getLogger().info("Compare API response - Output: " + result);
+		return result;
+    }
+
+    @PostMapping("/arithmetic")
+    public ResultResponseDto arithmetic(@RequestBody ArithmeticRequestDto dto) {
+//        double result = service.arithmetic(dto);
+//        return new ResultResponseDto("Calculated", result);
+    	
+    	getLogger().info("Arithmetic API called - Input: operation=" + dto.getOperation() + 
+                ", value1=" + dto.getValue1() + ", unit1=" + dto.getUnit1() + 
+                ", value2=" + dto.getValue2() + ", unit2=" + dto.getUnit2() + 
+                ", resultUnit=" + dto.getResultUnit());
+
+		double result = service.arithmetic(dto);
+		
+		getLogger().info("Arithmetic API response - Output: " + result);
+		return new ResultResponseDto("Calculated", result);
+    }
+}
