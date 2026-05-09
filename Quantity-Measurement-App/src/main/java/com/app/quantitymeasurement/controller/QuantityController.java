@@ -6,6 +6,8 @@ import com.app.quantitymeasurement.dto.*;
 import com.app.quantitymeasurement.service.QuantityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.List;
+import com.app.quantitymeasurement.entity.CalculationHistory;
 
 @RestController
 @RequestMapping("/quantity")
@@ -69,5 +71,11 @@ public class QuantityController {
 		
 		logger.info("Arithmetic API response - Output: " + result);
 		return new ResultResponseDto("Calculated", result);
+    }
+    
+    @GetMapping("/history")
+    public List<CalculationHistory> getHistory() {
+        logger.info("History API called - Fetching all records");
+        return service.getHistory();
     }
 }

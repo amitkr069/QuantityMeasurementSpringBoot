@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 import com.app.quantitymeasurement.dto.*;
 import com.app.quantitymeasurement.enums.*;
 import com.app.quantitymeasurement.exception.InvalidUnitException;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import com.app.quantitymeasurement.entity.CalculationHistory;
 import com.app.quantitymeasurement.repository.CalculationHistoryRepository;
@@ -110,6 +113,10 @@ public class QuantityService {
 
     public void setRepository(CalculationHistoryRepository repository) {
         this.repository = repository;
+    }
+    
+    public List<CalculationHistory> getHistory() {
+        return repository.findAll();
     }
 
 }
