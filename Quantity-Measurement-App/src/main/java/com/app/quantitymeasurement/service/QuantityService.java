@@ -119,8 +119,4 @@ public class QuantityService {
         return repository.findAll();
     }
     
-    public void hello() {
-    	System.out.print("Hello");
-    }
-
 }

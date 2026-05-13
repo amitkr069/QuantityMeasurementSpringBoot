@@ -79,8 +79,8 @@ public class QuantityController {
         return service.getHistory();
     }
     
-    @GetMapping("hello")
-    public void hello() {
-    	service.hello();
+    @GetMapping("/hello")
+    public String hello() {
+    	return "Hello";
     }
 }
