@@ -118,5 +118,9 @@ public class QuantityService {
     public List<CalculationHistory> getHistory() {
         return repository.findAll();
     }
+    
+    public void hello() {
+    	System.out.print("Hello");
+    }
 
 }
