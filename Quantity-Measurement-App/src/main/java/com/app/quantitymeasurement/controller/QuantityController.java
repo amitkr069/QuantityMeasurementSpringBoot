@@ -80,6 +80,7 @@ public class QuantityController {
     }
     
     @GetMapping("/hello")
+
     public String hello() {
     	return "Hello";
     }
