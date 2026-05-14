@@ -78,10 +78,4 @@ public class QuantityController {
         logger.info("History API called - Fetching all records");
         return service.getHistory();
     }
-    
-    @GetMapping("/hello")
-
-    public String hello() {
-    	return "Hello";
-    }
 }
